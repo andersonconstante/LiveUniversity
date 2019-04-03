@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Front End Test Live University</title>
+
+  <style>
+    html,
+    body,
+    main,
+    nav,
+    aside {
+      height: 97%;
+      box-sizing: border-box
+    }
+
+    body {
+    
+      margin: 1.5%;
+    }
+
+    main {
+      display: flex;
+      flex-direction: row;
+      flex: 1;
+    }
+
+    nav,
+    .obj3 {
+      display: flex;
+      flex-direction: column;
+      flex-basis: 70%;
+    }
+
+    /* Checkbox hack to toggle nav visibility */
+
+    input~nav {
+      transform: translateX();
+      flex: 2;
+    }
+
+    input:checked~nav {
+      transform: translateX(-12em);
+      flex: 0;
+      width: 0px;
+    }
+
+    input~ .obj1 {
+      flex: 1;
+      
+    }
+
+    input:checked~ .obj1 {
+      flex: 1;
+     
+    }
+
+    .divbotao {
+      padding: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .botao {
+      padding: 30px;
+      flex: 1;
+    }
+
+    .quantidadediv {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .quantidade {
+      padding: 10px;
+
+    }
+    .label{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+  </style>
+
+  <body>
+    <main style="background-color: #fff;">
+      <input id="toggle" type="checkbox" checked style="display:none" />
+      <nav style="background-color: #8dd0f2;">
+        <div>
+          <select name="tipos" id="tipoItem" class="form-control" onclick="createList()">
+            <option value="a">A</option>
+            <option value="b">B</option>
+          </select>
+        </div>
+      </nav>
+      <div class="obj1" style="background-color: #ccc;">
+        <div class="divbotao">
+          <button class="botao">
+            <label for="toggle">Option</label>
+          </button>
+        </div>
+        <div class="label">
+          <label>
+            Quantidade
+          </label>
+        </div>
+
+        <div class="quantidadediv">
+          <input type="number" class="quantidade" name="quantidade" id="qtd" autofocus required value="quantidade">
+        </div>
+      </div>
+      <div class="obj3">
+
+
+        <div>
+          <span>Lista items:</span>
+          <ul class="items"></ul>
+        </div>
+      </div>
+
+      </div>
+      </div>
+    </main>
+  </body>
+  <script>
+    // Div pai que irá receber os LI
+    const divPai = document.querySelector(".items")
+
+    // Retorno o valor dos items do input quantidade
+    const quantidadeItems = () => {
+      const quantidade = document.getElementById('qtd');
+      return quantidade.value;
+    }
+
+    // Retorno o valor do item selecionado no dropdown
+    const itemSelecionado = () => {
+
+      const valor = document.getElementById('tipoItem').value.toUpperCase();
+
+      return valor;
+    }
+
+    const createList = () => {
+      clear();
+      const quantidadeRecebida = parseInt(quantidadeItems());
+      for (let item = 0; item < quantidadeRecebida; item++) {
+        console.log('items:', item + 1);
+        divPai.innerHTML += `<li>Item ${itemSelecionado()}${item + 1}</li>`;
+      }
+    }
+
+    function clear() {
+
+      divPai.innerHTML = "";
+    }
+
+
+  </script>
+
+</html>
